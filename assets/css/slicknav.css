@@ -10,9 +10,7 @@
   float: right;
   padding: 0.438em 0.625em 0.438em 0.625em;
   line-height: 1.125em;
-  cursor: pointer;
-  color: #4c4c4c;
-}
+  cursor: pointer; }
   .slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar {
     margin-top: 0.188em; }
 
@@ -217,7 +215,7 @@
     font-size: 14px;
     font-weight: 400;
     color: #000;
-    text-transform: normal;
+    text-transform: capitalize;
 }
 
 .slicknav_nav .slicknav_arrow {
