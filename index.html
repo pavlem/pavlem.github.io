@@ -528,104 +528,35 @@
       color: var(--accent);
     }
 
-    /* Experience Section */
-    #experience {
-      background: var(--bg-secondary);
-      border-radius: 32px;
-      margin: 0 2rem;
-      max-width: calc(1200px - 4rem);
+    /* Apps Section */
+    .apps-intro {
+      text-align: center;
+      margin-bottom: 3rem;
     }
 
-    .experience-timeline {
-      position: relative;
-      max-width: 900px;
+    .apps-intro p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
       margin: 0 auto;
     }
 
-    .experience-timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--border);
-    }
-
-    .experience-item {
-      position: relative;
-      padding-left: 3rem;
-      padding-bottom: 3rem;
-    }
-
-    .experience-item:last-child {
-      padding-bottom: 0;
-    }
-
-    .experience-item::before {
-      content: '';
-      position: absolute;
-      left: -5px;
-      top: 0;
-      width: 12px;
-      height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-      border: 3px solid var(--bg-secondary);
-    }
-
-    .experience-header {
+    .apple-badge {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
     }
 
-    .experience-company {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-primary);
+    .apple-badge img {
+      max-width: 300px;
+      height: auto;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
     }
 
-    .experience-location {
-      color: var(--text-muted);
-      font-size: 0.9rem;
+    .apple-badge img:hover {
+      opacity: 1;
     }
-
-    .experience-role {
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
-    .experience-date {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .experience-description {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    .experience-description li {
-      margin-bottom: 0.5rem;
-      list-style-type: none;
-      position: relative;
-      padding-left: 1.25rem;
-    }
-
-    .experience-description li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-
-    /* Apps Section */
     .apps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -984,21 +915,13 @@
         padding: 4rem 1.5rem;
       }
 
-      #skills, #experience, #reviews {
+      #skills, #reviews {
         margin: 0 1rem;
         border-radius: 24px;
       }
 
       .apps-grid {
         grid-template-columns: 1fr;
-      }
-
-      .experience-timeline::before {
-        left: 4px;
-      }
-
-      .experience-item::before {
-        left: 0;
       }
     }
   </style>
@@ -1010,8 +933,8 @@
     <ul class="nav-links">
       <li><a href="#about" class="active">About</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#apps">Projects</a></li>
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="menu-toggle" aria-label="Toggle menu">
@@ -1042,7 +965,7 @@
         </div>
         <div class="hero-cta">
           <a href="#contact" class="btn btn-primary">Get in Touch</a>
-          <a href="#experience" class="btn btn-secondary">View Experience</a>
+          <a href="#apps" class="btn btn-secondary">View My Apps</a>
         </div>
       </div>
       <div class="hero-image">
@@ -1193,113 +1116,17 @@
     </div>
   </section>
 
-  <!-- Experience Section -->
-  <section id="experience">
-    <div class="section-header">
-      <span class="section-label">Career</span>
-      <h2 class="section-title">Professional Experience</h2>
-    </div>
-    <div class="experience-timeline">
-      <div class="experience-item">
-        <div class="experience-header">
-          <span class="experience-company">Chess.com</span>
-          <span class="experience-location">USA (Remote)</span>
-        </div>
-        <div class="experience-role">Principal Software Engineer (Contract)</div>
-        <div class="experience-date">Dec 2024 – Present</div>
-        <ul class="experience-description">
-          <li>Implementing new monetization and AD delivery system integrating Google Ads, Liftoff, Meta</li>
-          <li>Refactoring legacy codebase to modern reactive paradigm using SwiftUI and Swift Concurrency</li>
-          <li>Designing scalable architecture patterns following CLEAN principles</li>
-          <li>Migrating dependency management to Swift Package Manager (SPM)</li>
-        </ul>
-      </div>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <span class="experience-company">Clarivate</span>
-          <span class="experience-location">USA (Remote)</span>
-        </div>
-        <div class="experience-role">Principal Software Engineer</div>
-        <div class="experience-date">Apr 2024 – Jul 2025</div>
-        <ul class="experience-description">
-          <li>Created iOS library and IP app from scratch as a greenfield project</li>
-          <li>Implemented CI/CD pipeline for bi-weekly releases</li>
-          <li>Introduced TDD and reactive development practices, raising code quality</li>
-          <li>Integrated LLM-powered features enabling intelligent search and contextual content delivery</li>
-          <li>Defined and enforced mobile cybersecurity practices</li>
-        </ul>
-      </div>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <span class="experience-company">Ebury Partners</span>
-          <span class="experience-location">London, UK</span>
-        </div>
-        <div class="experience-role">Principal Software Engineer</div>
-        <div class="experience-date">Nov 2022 – Apr 2024</div>
-        <ul class="experience-description">
-          <li>Built a greenfield iOS banking app—grew from 0 to 10K users in six months</li>
-          <li>Spearheaded architecture and security integration</li>
-          <li>Replaced UIKit with SwiftUI, boosting maintainability and feature velocity</li>
-          <li>Introduced multi-profile feature with secure database for enterprise clients</li>
-          <li>Interviewed, hired, and mentored new developers</li>
-        </ul>
-      </div>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <span class="experience-company">Tiqets</span>
-          <span class="experience-location">Amsterdam, Netherlands</span>
-        </div>
-        <div class="experience-role">Staff Software Engineer</div>
-        <div class="experience-date">Mar 2022 – Nov 2022</div>
-        <ul class="experience-description">
-          <li>Lead iOS Developer for ticketing app</li>
-          <li>Refactored 50% of Objective-C codebase to Swift, reducing bug reports by 80%</li>
-          <li>Adopted MVVM + SwiftUI, improving maintainability</li>
-          <li>Integrated Kotlin Multiplatform, reducing duplicate code by 20%</li>
-        </ul>
-      </div>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <span class="experience-company">Typewise</span>
-          <span class="experience-location">Zurich, Switzerland</span>
-        </div>
-        <div class="experience-role">Senior Software Engineer</div>
-        <div class="experience-date">Oct 2021 – Mar 2022</div>
-        <ul class="experience-description">
-          <li>Built custom keyboard extension SDK</li>
-          <li>Partnered with ETH Zurich ML team on secure offline text prediction</li>
-          <li>Migrated UI to SwiftUI with MVVM, reducing memory usage by 30%</li>
-          <li>Integrated AI/LLM components for enhanced text prediction</li>
-        </ul>
-      </div>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <span class="experience-company">Sprinting Software</span>
-          <span class="experience-location">Copenhagen, Denmark</span>
-        </div>
-        <div class="experience-role">Senior Software Engineer</div>
-        <div class="experience-date">Nov 2018 – Sep 2020</div>
-        <ul class="experience-description">
-          <li>Lead architect for iOS apps across major Danish supermarket chains</li>
-          <li>Built and launched white-label shopping app (Netto & Bilka)</li>
-          <li>Rolled out Netto Scan & Go app to 500+ locations</li>
-          <li>Designed BLE layer using CoreBluetooth for in-store beacon discovery</li>
-          <li>Defined coding standards (MVVM, VIPER, reactive programming)</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
+  <!-- Apps Section -->
   <section id="apps">
     <div class="section-header">
       <span class="section-label">Portfolio</span>
-      <h2 class="section-title">Featured Projects</h2>
+      <h2 class="section-title">Apps</h2>
+    </div>
+    <div class="apps-intro">
+      <div class="apple-badge">
+        <img src="assets/apple-products.png" alt="Apple Products">
+      </div>
+      <p>Over 50 apps for various companies. Highlights below; many are enterprise-distributed.</p>
     </div>
     <div class="apps-grid">
       <div class="app-card">
@@ -1421,6 +1248,72 @@
     </div>
   </section>
 
+  <!-- Reviews Section -->
+  <section id="reviews">
+    <div class="section-header">
+      <span class="section-label">Testimonials</span>
+      <h2 class="section-title">Here's What Colleagues Are Saying</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Pavle is an exceptional engineer who consistently delivers high-quality code. His deep expertise in iOS 
+          development and ability to solve complex architectural problems made him invaluable to our team. 
+          I was always impressed by his dedication and constant improvement."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JD</div>
+          <div class="author-info">
+            <h4>John Doe</h4>
+            <p>Engineering Manager</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Working with Pavle was a great experience. He brings not only technical excellence but also a collaborative 
+          spirit that elevates the entire team's performance. His ability to explain complex technical concepts 
+          in simple terms is remarkable."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JS</div>
+          <div class="author-info">
+            <h4>Jane Smith</h4>
+            <p>Product Manager</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Pavle's deep knowledge of iOS and his attention to detail resulted in one of the smoothest app launches 
+          we've ever had. He's highly knowledgeable in mobile development and quickly understands client requirements. 
+          I highly recommend him."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MK</div>
+          <div class="author-info">
+            <h4>Mike Johnson</h4>
+            <p>CTO</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Pavle is a great professional, always dedicated to what he's doing with a desire to improve. 
+          His mentoring skills helped our junior developers grow significantly. We had a lot of fun working 
+          together and I learned a lot from him."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AK</div>
+          <div class="author-info">
+            <h4>Alex Kim</h4>
+            <p>Senior iOS Developer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Stats Section -->
   <div class="stats-section">
     <div class="stat-item">
@@ -1532,7 +1425,7 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.skill-card, .app-card, .experience-item, .stat-item, .contracting-card').forEach(el => {
+    document.querySelectorAll('.skill-card, .app-card, .testimonial-card, .stat-item, .contracting-card').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
