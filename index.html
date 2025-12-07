@@ -2,45 +2,1211 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Pavle Mijatović</title>
+  <title>Pavle Mijatović | iOS Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Staff/Principal iOS Engineer specializing in Swift, Crypto, and BLE. Building complex mobile apps for banking, retail, and crypto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-      margin: 0;
-      padding: 2rem;
+    :root {
+      --bg-primary: #0a0a0b;
+      --bg-secondary: #111113;
+      --bg-tertiary: #1a1a1d;
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #f59e0b;
+      --accent-light: #fbbf24;
+      --accent-dark: #d97706;
+      --border: #27272a;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --gradient-1: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+      --gradient-2: linear-gradient(135deg, #0a0a0b 0%, #1a1a1d 100%);
     }
-    main {
-      max-width: 720px;
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Background Pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245, 158, 11, 0.15), transparent),
+        radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.05), transparent 40%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2rem 4rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
-    h1 {
-      margin-bottom: 0.25rem;
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
     }
-    .subtitle {
-      color: #666;
+
+    .hero-text {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
       margin-bottom: 1.5rem;
     }
-    a {
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 .highlight {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-description {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tag {
+      padding: 0.5rem 1rem;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      font-size: 0.95rem;
+      font-weight: 600;
       text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient-1);
+      color: var(--bg-primary);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-secondary);
+      background: var(--card-bg);
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+      opacity: 0;
+    }
+
+    .profile-card {
+      position: relative;
+      width: 320px;
+      height: 400px;
+      background: var(--gradient-2);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+      opacity: 0.1;
+    }
+
+    .profile-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      opacity: 0.8;
+    }
+
+    .profile-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .floating-badge {
+      position: absolute;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .floating-badge.top-right {
+      top: -20px;
+      right: -30px;
+      animation-delay: 0s;
+    }
+
+    .floating-badge.bottom-left {
+      bottom: 60px;
+      left: -40px;
+      animation-delay: 1.5s;
+    }
+
+    .floating-badge .icon {
+      font-size: 1.25rem;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Section Styles */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    /* Skills Section */
+    #skills {
+      background: var(--bg-secondary);
+      border-radius: 32px;
+      margin: 0 2rem;
+      max-width: calc(1200px - 4rem);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .skill-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* About Section */
+    #about .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-image {
+      position: sticky;
+      top: 100px;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--bg-tertiary);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-text h3 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .about-text p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    .about-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .detail-item h4 {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-item p {
+      color: var(--text-primary);
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+
+    /* Apps Section */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .app-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .app-preview {
+      height: 200px;
+      background: var(--bg-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .app-info {
+      padding: 1.5rem;
+    }
+
+    .app-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .app-info p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .app-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .app-tag {
+      padding: 0.25rem 0.75rem;
+      background: var(--bg-tertiary);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Testimonials Section */
+    #reviews {
+      background: var(--bg-secondary);
+      border-radius: 32px;
+      margin: 0 2rem;
+      max-width: calc(1200px - 4rem);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--accent);
+    }
+
+    .testimonial-text {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-tertiary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .author-info h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .author-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Stats Section */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .stat-item p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Contact Section */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-content p {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      background: var(--bg-tertiary);
+    }
+
+    .contact-link svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text {
+        order: 2;
+      }
+
+      .hero-image {
+        order: 1;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-tags {
+        justify-content: center;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .profile-card {
+        width: 250px;
+        height: 320px;
+      }
+
+      .floating-badge {
+        display: none;
+      }
+
+      #about .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        position: static;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 1rem 1.5rem;
+        gap: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      #skills, #reviews {
+        margin: 0 1rem;
+        border-radius: 24px;
+      }
+
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Hi, I’m Pavle 👋</h1>
-    <p class="subtitle">Staff / Principal iOS Engineer • Swift • Crypto • BLE</p>
-
-    <p>
-      I build complex mobile apps (banking, scan & go retail, crypto, ads/monetization).
-      This is my very simple first version of a personal site, hosted on GitHub Pages.
-    </p>
-
-    <h2>Links</h2>
-    <ul>
-      <li><a href="https://github.com/pavlem" target="_blank">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/pavle-mijatovic-63835120" target="_blank">LinkedIn</a></li>
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="logo">pavle<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about" class="active">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-  </main>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">Available for new opportunities</div>
+        <h1>Staff iOS Engineer<br/>crafting <span class="highlight">exceptional</span> mobile experiences</h1>
+        <p class="hero-description">
+          I build complex mobile apps for banking, retail, crypto, and monetization. 
+          18+ years bringing ideas to life with Swift, Objective-C, and cutting-edge iOS technologies.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">Swift</span>
+          <span class="tag">SwiftUI</span>
+          <span class="tag">Crypto</span>
+          <span class="tag">BLE</span>
+          <span class="tag">UIKit</span>
+          <span class="tag">Core Data</span>
+        </div>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Get in Touch</a>
+          <a href="#apps" class="btn btn-secondary">View My Work</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="profile-card">
+          <!-- Replace with your photo: <img src="your-photo.jpg" alt="Pavle Mijatović"> -->
+          <div class="profile-placeholder">👨‍💻</div>
+          <div class="floating-badge top-right">
+            <span class="icon">🍎</span>
+            <span>iOS Expert</span>
+          </div>
+          <div class="floating-badge bottom-left">
+            <span class="icon">⚡</span>
+            <span>18+ Years</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-label">Expertise</span>
+      <h2 class="section-title">What I Bring to the Table</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">📱</div>
+        <h3>iOS Development</h3>
+        <p>Expert in Swift, SwiftUI, UIKit, and Objective-C. Building pixel-perfect, performant apps with clean architecture.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔐</div>
+        <h3>Crypto & Security</h3>
+        <p>Deep experience with cryptocurrency apps, secure transactions, encryption, and blockchain integrations.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📡</div>
+        <h3>Bluetooth & BLE</h3>
+        <p>CoreBluetooth expert. Building IoT connections, hardware integrations, and scan & go retail solutions.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🏦</div>
+        <h3>FinTech & Banking</h3>
+        <p>Complex banking applications with secure transactions, real-time data, and regulatory compliance.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💰</div>
+        <h3>Monetization</h3>
+        <p>IAP, subscriptions, ads integration, and revenue optimization strategies that drive growth.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">👥</div>
+        <h3>Technical Leadership</h3>
+        <p>Mentoring teams, code reviews, architecture decisions, and fostering engineering excellence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-label">About Me</span>
+      <h2 class="section-title">The Person Behind the Code</h2>
+    </div>
+    <div class="about-content">
+      <div class="about-image">
+        <div class="about-photo">
+          <!-- Replace with your photo: <img src="your-about-photo.jpg" alt="Pavle Mijatović"> -->
+          🧑‍💻
+        </div>
+      </div>
+      <div class="about-text">
+        <h3>Hello! I'm Pavle Mijatović</h3>
+        <p>
+          I'm a Staff/Principal iOS Engineer based in Belgrade, Serbia. With over 18 years of experience in mobile development, 
+          I've had the privilege of building apps that millions of people use daily.
+        </p>
+        <p>
+          My journey started with Objective-C back when the App Store was young, and I've evolved alongside iOS—from UIKit 
+          to SwiftUI, from MVC to modern architectures. I specialize in complex domains: banking apps that handle sensitive 
+          transactions, crypto wallets that secure digital assets, and retail apps that connect the physical and digital worlds 
+          through BLE technology.
+        </p>
+        <p>
+          Beyond coding, I'm passionate about clean architecture, mentoring fellow developers, and staying at the cutting edge 
+          of Apple's ecosystem. When I'm not building apps, you'll find me exploring new technologies or contributing to 
+          open-source projects.
+        </p>
+        <div class="about-details">
+          <div class="detail-item">
+            <h4>Location</h4>
+            <p>Belgrade, Serbia</p>
+          </div>
+          <div class="detail-item">
+            <h4>Experience</h4>
+            <p>18+ Years</p>
+          </div>
+          <div class="detail-item">
+            <h4>Specialization</h4>
+            <p>iOS, Swift, Crypto, BLE</p>
+          </div>
+          <div class="detail-item">
+            <h4>Current Role</h4>
+            <p>Staff iOS Engineer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apps Section -->
+  <section id="apps">
+    <div class="section-header">
+      <span class="section-label">Portfolio</span>
+      <h2 class="section-title">Apps I've Built</h2>
+    </div>
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-preview">
+          <!-- Replace with app screenshot: <img src="banking-app.png" alt="Banking App"> -->
+          🏦
+        </div>
+        <div class="app-info">
+          <h3>Banking App</h3>
+          <p>Full-featured mobile banking with secure transactions, biometric auth, and real-time notifications.</p>
+          <div class="app-tags">
+            <span class="app-tag">Swift</span>
+            <span class="app-tag">Security</span>
+            <span class="app-tag">FinTech</span>
+          </div>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-preview">
+          <!-- Replace with app screenshot: <img src="crypto-app.png" alt="Crypto Wallet"> -->
+          ₿
+        </div>
+        <div class="app-info">
+          <h3>Crypto Wallet</h3>
+          <p>Secure cryptocurrency wallet with multi-coin support, real-time trading, and hardware wallet integration.</p>
+          <div class="app-tags">
+            <span class="app-tag">Crypto</span>
+            <span class="app-tag">Blockchain</span>
+            <span class="app-tag">Security</span>
+          </div>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-preview">
+          <!-- Replace with app screenshot: <img src="retail-app.png" alt="Scan & Go Retail"> -->
+          🛒
+        </div>
+        <div class="app-info">
+          <h3>Scan & Go Retail</h3>
+          <p>Revolutionary retail experience with BLE beacons, barcode scanning, and seamless checkout.</p>
+          <div class="app-tags">
+            <span class="app-tag">BLE</span>
+            <span class="app-tag">Retail</span>
+            <span class="app-tag">IoT</span>
+          </div>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-preview">
+          <!-- Replace with app screenshot: <img src="ads-app.png" alt="Ad Platform"> -->
+          📊
+        </div>
+        <div class="app-info">
+          <h3>Ad Platform SDK</h3>
+          <p>High-performance advertising SDK with advanced targeting, analytics, and monetization tools.</p>
+          <div class="app-tags">
+            <span class="app-tag">AdTech</span>
+            <span class="app-tag">SDK</span>
+            <span class="app-tag">Analytics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="reviews">
+    <div class="section-header">
+      <span class="section-label">Testimonials</span>
+      <h2 class="section-title">What Colleagues Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Pavle is an exceptional engineer who consistently delivers high-quality code. His expertise in iOS development 
+          and ability to solve complex problems made him invaluable to our team."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JD</div>
+          <div class="author-info">
+            <h4>John Doe</h4>
+            <p>Engineering Manager</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Working with Pavle was a great experience. He brings not only technical excellence but also a collaborative 
+          spirit that elevates the entire team's performance."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JS</div>
+          <div class="author-info">
+            <h4>Jane Smith</h4>
+            <p>Product Manager</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Pavle's deep knowledge of iOS and his attention to detail resulted in one of the smoothest app launches 
+          we've ever had. Highly recommended!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MK</div>
+          <div class="author-info">
+            <h4>Mike Johnson</h4>
+            <p>CTO</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <div class="stats-section">
+    <div class="stat-item">
+      <h3>50+</h3>
+      <p>Apps Developed</p>
+    </div>
+    <div class="stat-item">
+      <h3>18+</h3>
+      <p>Years Experience</p>
+    </div>
+    <div class="stat-item">
+      <h3>10+</h3>
+      <p>Open Source Projects</p>
+    </div>
+    <div class="stat-item">
+      <h3>5.0</h3>
+      <p>Client Rating</p>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Let's Work Together</h2>
+    </div>
+    <div class="contact-content">
+      <p>
+        I'm always interested in hearing about new projects and opportunities. 
+        Whether you have a question or just want to say hi, feel free to reach out!
+      </p>
+      <div class="contact-links">
+        <a href="https://github.com/pavlem" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/pavle-mijatovic-63835120" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:your.email@example.com" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Pavle Mijatović. Built with ❤️ and Swift spirit.</p>
+  </footer>
+
+  <!-- JavaScript for mobile menu and smooth scroll -->
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href').slice(1) === current) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Animate elements on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.skill-card, .app-card, .testimonial-card, .stat-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
