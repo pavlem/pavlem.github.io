@@ -155,14 +155,39 @@
     }
 
     .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
       width: 100%;
     }
 
-    .hero-text {
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-top .profile-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .hero-top .profile-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero-titles h1 {
+      margin-bottom: 0;
+    }
+
+    .hero-titles {
       animation: fadeInUp 0.8s ease forwards;
     }
 
@@ -214,27 +239,6 @@
       max-width: 500px;
     }
 
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .tag {
-      padding: 0.5rem 1rem;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      transition: all 0.3s ease;
-    }
-
-    .tag:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
 
     .hero-cta {
       display: flex;
@@ -276,73 +280,6 @@
       background: var(--card-bg);
     }
 
-    .hero-image {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: fadeInUp 0.8s ease 0.2s forwards;
-      opacity: 0;
-    }
-
-    .profile-card {
-      position: relative;
-      width: 320px;
-      height: 400px;
-      background: var(--gradient-2);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .profile-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60%;
-      background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
-      opacity: 0.1;
-    }
-
-    .profile-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .floating-badge {
-      position: absolute;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .floating-badge.top-right {
-      top: -20px;
-      right: -30px;
-      animation-delay: 0s;
-    }
-
-    .floating-badge.bottom-left {
-      bottom: 60px;
-      left: -40px;
-      animation-delay: 1.5s;
-    }
-
-    .floating-badge .icon {
-      font-size: 1.25rem;
-    }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
@@ -393,7 +330,7 @@
     #skills {
       background: var(--bg-secondary);
       border-radius: 32px;
-      margin: 0 2rem;
+      margin: 0 auto;
       max-width: calc(1200px - 4rem);
     }
 
@@ -579,7 +516,7 @@
     }
 
     .app-preview {
-      height: 180px;
+      height: 140px;
       background: var(--bg-tertiary);
       display: flex;
       align-items: center;
@@ -588,6 +525,7 @@
       border-bottom: 1px solid var(--border);
       position: relative;
       overflow: hidden;
+      padding: 1.5rem;
     }
 
     .app-preview::before {
@@ -599,9 +537,12 @@
     }
 
     .app-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      border-radius: 10px;
     }
 
     .app-info {
@@ -642,47 +583,12 @@
       color: var(--text-muted);
     }
 
-    /* Contracting Section */
-    .contracting-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-top: 3rem;
-    }
-
-    .contracting-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
-      transition: all 0.3s ease;
-    }
-
-    .contracting-card:hover {
-      border-color: var(--accent);
-    }
-
-    .contracting-card h4 {
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .contracting-card .date {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .contracting-card p {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
 
     /* Testimonials Section */
     #reviews {
       background: var(--bg-secondary);
       border-radius: 32px;
-      margin: 0 2rem;
+      margin: 0 auto;
       max-width: calc(1200px - 4rem);
     }
 
@@ -832,39 +738,22 @@
 
     /* Responsive */
     @media (max-width: 968px) {
-      .hero-content {
-        grid-template-columns: 1fr;
+      .hero-top {
+        flex-direction: column;
         text-align: center;
       }
 
-      .hero-text {
-        order: 2;
-      }
-
-      .hero-image {
-        order: 1;
+      .hero-top .profile-circle {
+        order: -1;
+        margin-bottom: 1rem;
       }
 
       .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-tags {
-        justify-content: center;
+        text-align: center;
       }
 
       .hero-cta {
         justify-content: center;
-      }
-
-      .profile-card {
-        width: 250px;
-        height: 320px;
-      }
-
-      .floating-badge {
-        display: none;
       }
 
       #about .about-content {
@@ -917,7 +806,8 @@
       }
 
       #skills, #reviews {
-        margin: 0 1rem;
+        margin: 0 auto;
+        max-width: calc(100% - 2rem);
         border-radius: 24px;
       }
 
@@ -930,7 +820,7 @@
 <body>
   <!-- Navigation -->
   <nav>
-    <a href="#" class="logo">pavle<span>.</span></a>
+    <a href="#" class="logo">Pavle Mijatovic<span>.</span></a>
     <ul class="nav-links">
       <li><a href="#about" class="active">About</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -948,33 +838,23 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-text">
-
-        <h1>Software Engineer, MSc<br/>building <span class="highlight">exceptional</span> mobile experiences</h1>
-        <p class="hero-description">
-          Seasoned iOS Software Engineer with over 20 years of experience. Expert in iOS, mobile systems, security, system architecture,
-          blockchain and AI/ML integration with a proven record of modernizing legacy apps 
-          and leading cross-functional teams.
-        </p>
-        <div class="hero-tags">
-          <span class="tag">Swift</span>
-          <span class="tag">SwiftUI</span>
-          <span class="tag">Blockchain</span>
-          <span class="tag">AI/ML</span>
-          <span class="tag">CoreBluetooth</span>
-          <span class="tag">TDD</span>
+      <div class="hero-top">
+        <div class="hero-titles">
+          <h1>Software Engineer, MSc<br/>building <span class="highlight">exceptional</span> mobile experiences</h1>
         </div>
+        <div class="profile-circle">
+          <img src="assets/pavle.png" alt="Pavle Mijatović">
+        </div>
+      </div>
+      <p class="hero-description">
+        Seasoned iOS Software Engineer with over 20 years of experience. Expert in iOS, mobile systems, security, system architecture,
+        blockchain and AI/ML integration with a proven record of modernizing legacy apps 
+        and leading cross-functional teams.
+      </p>
         <div class="hero-cta">
           <a href="mailto:paul.mijatovic@gmail.com" class="btn btn-primary">Get in Touch</a>
           <a href="#apps" class="btn btn-secondary">View My Apps</a>
         </div>
-      </div>
-      <div class="hero-image">
-        <div class="profile-card">
-          <img src="assets/pavle.png" alt="Pavle Mijatović">
-
-        </div>
-      </div>
     </div>
   </section>
 
@@ -986,14 +866,17 @@
     </div>
     <div class="skills-grid">
       <div class="skill-card">
-        <div class="skill-icon">📱</div>
-        <h3>Mobile Development</h3>
-        <p>Native iOS (Swift & Objective-C), Native Android (Kotlin & Java), Hybrid solutions with React Native and Flutter.</p>
+        <div class="skill-icon">💻</div>
+        <h3>Languages & Frameworks</h3>
+        <p>Proficient in multiple programming languages for mobile, backend, and cross-platform development.</p>
         <div class="skill-tags">
-          <span class="skill-tag">SwiftUI</span>
-          <span class="skill-tag">UIKit</span>
-          <span class="skill-tag">Combine</span>
-          <span class="skill-tag">Swift Concurrency</span>
+          <span class="skill-tag">Swift</span>
+          <span class="skill-tag">Objective-C</span>
+          <span class="skill-tag">Kotlin</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">C/C++</span>
+          <span class="skill-tag">Java</span>
         </div>
       </div>
       <div class="skill-card">
@@ -1002,9 +885,23 @@
         <p>Expert in clean architecture patterns ensuring scalability, testability, and maintainability.</p>
         <div class="skill-tags">
           <span class="skill-tag">MVVM-C</span>
+          <span class="skill-tag">Clean</span>
           <span class="skill-tag">VIPER</span>
+          <span class="skill-tag">MVP</span>
+          <span class="skill-tag">MVC</span>
           <span class="skill-tag">TCA</span>
-          <span class="skill-tag">Clean Architecture</span>
+          <span class="skill-tag">TDD</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📱</div>
+        <h3>Mobile Development</h3>
+        <p>Native iOS (Swift & Objective-C), Native Android (Kotlin & Java), Hybrid solutions with React Native and Flutter.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Native iOS</span>
+          <span class="skill-tag">Native Android</span>
+          <span class="skill-tag">React Native</span>
+          <span class="skill-tag">Flutter</span>
         </div>
       </div>
       <div class="skill-card">
@@ -1013,8 +910,9 @@
         <p>HD wallets (BIP32/39/44), secure key storage, transaction building/signing, UTXO selection, SPV light-client flows, hardware-wallet compatibility.</p>
         <div class="skill-tags">
           <span class="skill-tag">HD Wallets</span>
+          <span class="skill-tag">BIP32/39/44</span>
           <span class="skill-tag">Secure Enclave</span>
-          <span class="skill-tag">NFC Signing</span>
+          <span class="skill-tag">Hardware Wallets</span>
         </div>
       </div>
       <div class="skill-card">
@@ -1024,7 +922,7 @@
         <div class="skill-tags">
           <span class="skill-tag">Core ML</span>
           <span class="skill-tag">LLMs</span>
-          <span class="skill-tag">On-device AI</span>
+          <span class="skill-tag">On-device Inference</span>
         </div>
       </div>
       <div class="skill-card">
@@ -1034,13 +932,41 @@
         <div class="skill-tags">
           <span class="skill-tag">Bitrise</span>
           <span class="skill-tag">CircleCI</span>
-          <span class="skill-tag">OAuth/JWT</span>
+          <span class="skill-tag">OAuth</span>
+          <span class="skill-tag">JWT</span>
+          <span class="skill-tag">TLS/SSL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🍎</div>
+        <h3>iOS SDKs</h3>
+        <p>Deep expertise in Apple's native frameworks for building rich, performant iOS applications.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">SwiftUI</span>
+          <span class="skill-tag">UIKit</span>
+          <span class="skill-tag">Combine</span>
+          <span class="skill-tag">CoreBluetooth</span>
+          <span class="skill-tag">ARKit</span>
+          <span class="skill-tag">MapKit</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <h3>APIs & DBs</h3>
+        <p>Experience with databases and API integrations for robust data management and seamless connectivity.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Core Data</span>
+          <span class="skill-tag">Realm</span>
+          <span class="skill-tag">Swift Data</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">RESTful</span>
+          <span class="skill-tag">GraphQL</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="skill-icon">👥</div>
         <h3>Leadership & Process</h3>
-        <p>Team leadership up to 10 developers, Agile/Scrum ceremonies, recruitment, mentoring, and cross-team collaboration.</p>
+        <p>Team leadership up to 20 developers, Agile/Scrum ceremonies, recruitment, mentoring, and cross-team collaboration.</p>
         <div class="skill-tags">
           <span class="skill-tag">Agile</span>
           <span class="skill-tag">Mentoring</span>
@@ -1077,9 +1003,6 @@
           Outside of work, I love reading sci-fi, history, and politics, watching films, and getting outdoors for running or basketball. Most importantly, I’m a husband and a father, my energetic, car obsessed 3 year old and my brilliant wife make life richer (and a lot more fun).
 
         </p>
-        <div class="mensa-badge">
-          🧠 Mensa International Member
-        </div>
         <div class="about-details">
           <div class="detail-item">
             <h4>Location</h4>
@@ -1116,20 +1039,9 @@
     </div>
     <div class="apps-grid">
       <div class="app-card">
-        <div class="app-preview">♟️</div>
-        <div class="app-info">
-          <div class="app-company">Chess.com</div>
-          <h3>Ad Monetization System</h3>
-          <p>Built entire AD system for fullscreen and container ads using Liftoff, Meta, Google Ads networks.</p>
-          <div class="app-tags">
-            <span class="app-tag">AdTech</span>
-            <span class="app-tag">SwiftUI</span>
-            <span class="app-tag">SPM</span>
-          </div>
+        <div class="app-preview">
+          <img src="assets/ebury_logo.jpeg" alt="Ebury Partners">
         </div>
-      </div>
-      <div class="app-card">
-        <div class="app-preview">🏦</div>
         <div class="app-info">
           <div class="app-company">Ebury Partners</div>
           <h3>Banking App</h3>
@@ -1142,7 +1054,9 @@
         </div>
       </div>
       <div class="app-card">
-        <div class="app-preview">🛒</div>
+        <div class="app-preview">
+          <img src="assets/netto_logo.jpeg" alt="Netto">
+        </div>
         <div class="app-info">
           <div class="app-company">Sprinting Software</div>
           <h3>Netto Scan & Go</h3>
@@ -1155,7 +1069,9 @@
         </div>
       </div>
       <div class="app-card">
-        <div class="app-preview">⌨️</div>
+        <div class="app-preview">
+          <img src="assets/typewise_logo.jpeg" alt="Typewise">
+        </div>
         <div class="app-info">
           <div class="app-company">Typewise</div>
           <h3>AI Keyboard SDK</h3>
@@ -1168,7 +1084,9 @@
         </div>
       </div>
       <div class="app-card">
-        <div class="app-preview">🎫</div>
+        <div class="app-preview">
+          <img src="assets/tiqets_logo.jpeg" alt="Tiqets">
+        </div>
         <div class="app-info">
           <div class="app-company">Tiqets</div>
           <h3>Ticketing App</h3>
@@ -1181,7 +1099,9 @@
         </div>
       </div>
       <div class="app-card">
-        <div class="app-preview">🔬</div>
+        <div class="app-preview">
+          <img src="assets/clarivate_logo.jpeg" alt="Clarivate">
+        </div>
         <div class="app-info">
           <div class="app-company">Clarivate</div>
           <h3>IP Research App</h3>
@@ -1193,43 +1113,140 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Contracting Projects -->
-    <div class="section-header" style="margin-top: 4rem;">
-      <span class="section-label">Contracting</span>
-      <h2 class="section-title">Additional Projects</h2>
-    </div>
-    <div class="contracting-grid">
-      <div class="contracting-card">
-        <h4>Belit (Medical)</h4>
-        <div class="date">2022 – 2024</div>
-        <p>Medical iOS app for Horizon Europe BRAINTEASER (ALS/MS progression)</p>
+      <div class="app-card">
+        <div class="app-preview">
+          <img src="assets/chesscom_logo.jpeg" alt="Chess.com">
+        </div>
+        <div class="app-info">
+          <div class="app-company">Chess.com</div>
+          <h3>Ad Monetization System</h3>
+          <p>Built entire AD system for fullscreen and container ads using Liftoff, Meta, Google Ads networks.</p>
+          <div class="app-tags">
+            <span class="app-tag">AdTech</span>
+            <span class="app-tag">SwiftUI</span>
+            <span class="app-tag">SPM</span>
+          </div>
+        </div>
       </div>
-      <div class="contracting-card">
-        <h4>eBay</h4>
-        <div class="date">2020 – 2021</div>
-        <p>Rewrote item grid logic for checkout items from scratch</p>
+      <div class="app-card">
+        <div class="app-preview">
+          <img src="assets/capture_one_logo.jpeg" alt="Capture One">
+        </div>
+        <div class="app-info">
+          <div class="app-company">Capture One</div>
+          <h3>Photo Editor</h3>
+          <p>Fixed MAC bugs in edit module, refactored Objective-C codebase to Swift.</p>
+          <div class="app-tags">
+            <span class="app-tag">macOS</span>
+            <span class="app-tag">Swift</span>
+            <span class="app-tag">Photo</span>
+          </div>
+        </div>
       </div>
-      <div class="contracting-card">
-        <h4>Capture One</h4>
-        <div class="date">2020 – 2021</div>
-        <p>Fixed MAC bugs, refactored Obj-C to Swift in edit module</p>
+      <div class="app-card">
+        <div class="app-preview">
+          <img src="assets/tomtom_logo.jpeg" alt="TomTom">
+        </div>
+        <div class="app-info">
+          <div class="app-company">TomTom</div>
+          <h3>Maps SDK</h3>
+          <p>Developed SDK for internal driving maps with navigation features.</p>
+          <div class="app-tags">
+            <span class="app-tag">SDK</span>
+            <span class="app-tag">Maps</span>
+            <span class="app-tag">Navigation</span>
+          </div>
+        </div>
       </div>
-      <div class="contracting-card">
-        <h4>TomTom</h4>
-        <div class="date">2021 – 2022</div>
-        <p>Developed SDK for internal driving maps</p>
+      <div class="app-card">
+        <div class="app-preview">
+          <img src="assets/albelli_logo.jpeg" alt="Albelli">
+        </div>
+        <div class="app-info">
+          <div class="app-company">Albelli</div>
+          <h3>Photo Book App</h3>
+          <p>Modernized app architecture, migrated Obj-C to Swift with MVVM, improved startup by 50%.</p>
+          <div class="app-tags">
+            <span class="app-tag">Swift</span>
+            <span class="app-tag">Core Data</span>
+            <span class="app-tag">MVVM</span>
+          </div>
+        </div>
       </div>
-      <div class="contracting-card">
-        <h4>Khaoticen</h4>
-        <div class="date">2015 – 2016</div>
-        <p>Led secure chat app development with cryptography (6-member team)</p>
+      <div class="app-card">
+        <div class="app-preview">
+          <img src="assets/levi9_logo.jpeg" alt="Levi9">
+        </div>
+        <div class="app-info">
+          <div class="app-company">Levi9</div>
+          <h3>E-Charging SDK</h3>
+          <p>Implemented SDK for e-charging stations with real-time connectivity.</p>
+          <div class="app-tags">
+            <span class="app-tag">CoreBluetooth</span>
+            <span class="app-tag">IoT</span>
+            <span class="app-tag">Swift</span>
+          </div>
+        </div>
       </div>
-      <div class="contracting-card">
-        <h4>Dash</h4>
-        <div class="date">2025</div>
-        <p>Fixed Swift SDK errors, separated SDK logic from iOS app</p>
+      <div class="app-card">
+        <div class="app-preview">
+          <img src="assets/nortal_logo.jpeg" alt="Nortal">
+        </div>
+        <div class="app-info">
+          <div class="app-company">Nortal</div>
+          <h3>Enterprise Apps</h3>
+          <p>Developed enterprise mobile solutions for government and business clients.</p>
+          <div class="app-tags">
+            <span class="app-tag">Enterprise</span>
+            <span class="app-tag">iOS</span>
+            <span class="app-tag">Security</span>
+          </div>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-preview">
+          <img src="assets/sprinting_software_logo.jpeg" alt="Sprinting Software">
+        </div>
+        <div class="app-info">
+          <div class="app-company">Sprinting Software</div>
+          <h3>Bilka Shopping App</h3>
+          <p>White-label shopping app for Danish supermarket chain with scan & go features.</p>
+          <div class="app-tags">
+            <span class="app-tag">Retail</span>
+            <span class="app-tag">BLE</span>
+            <span class="app-tag">iOS</span>
+          </div>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-preview">
+          <img src="assets/ebay_logo.jpeg" alt="eBay">
+        </div>
+        <div class="app-info">
+          <div class="app-company">eBay</div>
+          <h3>Checkout Module</h3>
+          <p>Fixed item grid logic for checkout items, rewrote it from scratch improving performance.</p>
+          <div class="app-tags">
+            <span class="app-tag">E-commerce</span>
+            <span class="app-tag">UIKit</span>
+            <span class="app-tag">iOS</span>
+          </div>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-preview">
+          <img src="assets/merkle_dach_logo.jpeg" alt="Namics">
+        </div>
+        <div class="app-info">
+          <div class="app-company">Namics</div>
+          <h3>UBS Banking App</h3>
+          <p>Implemented new UI and migrated codebase from Objective-C to Swift.</p>
+          <div class="app-tags">
+            <span class="app-tag">FinTech</span>
+            <span class="app-tag">Swift</span>
+            <span class="app-tag">Migration</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1243,57 +1260,49 @@
     <div class="testimonials-grid">
       <div class="testimonial-card">
         <p class="testimonial-text">
-          "Pavle is an exceptional engineer who consistently delivers high-quality code. His deep expertise in iOS 
-          development and ability to solve complex architectural problems made him invaluable to our team. 
-          I was always impressed by his dedication and constant improvement."
+          "Pavle has demonstrated exceptional technical expertise and leadership in the architecture and
+          development of our mobile banking application. Under his guidance, the app has seen a transformation
+          from a minimal viable product to a modern, fully reactive platform. His dedication, technical prowess, and
+          leadership qualities have been truly remarkable. I am confident that he will bring the same level of
+          excellence and innovation to any future role he undertakes."
         </p>
         <div class="testimonial-author">
-          <div class="author-avatar">JD</div>
+          <div class="author-avatar">SH</div>
           <div class="author-info">
-            <h4>John Doe</h4>
-            <p>Engineering Manager</p>
+            <h4>Stefan Hielscher</h4>
+            <p>Senior Manager, People & Culture
+              EBURY TECHNOLOGY LTD. powered by Santander</p>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
         <p class="testimonial-text">
-          "Working with Pavle was a great experience. He brings not only technical excellence but also a collaborative 
-          spirit that elevates the entire team's performance. His ability to explain complex technical concepts 
-          in simple terms is remarkable."
+          "I personally recruited Pavle Mijatovic in October 2018 as a senior iOS developer to work on a large and complex
+          project we ran for a large retail chain. Pavle has worked diligently and delivered top-notch quality code and
+          architecture for the project, laying the groundwork and building up a new and complex app from scratch. I will highly recommend Pavle
+          for any team developing complex iOS applications who needs a strong leader."
         </p>
         <div class="testimonial-author">
           <div class="author-avatar">JS</div>
           <div class="author-info">
-            <h4>Jane Smith</h4>
-            <p>Product Manager</p>
+            <h4>Jonatan Kutchinsky</h4>
+            <p>Partner, Technology Director and Co-founder
+              Sprinting Software Aps</p>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
         <p class="testimonial-text">
-          "Pavle's deep knowledge of iOS and his attention to detail resulted in one of the smoothest app launches 
-          we've ever had. He's highly knowledgeable in mobile development and quickly understands client requirements. 
-          I highly recommend him."
+          "Pavle proved he can switch swiftly between individualand team projects. He provided well-
+          structured plans and good estimates for his work. Pavle managed his duties efficiently, and his team
+          and superiors were convinced that his work would be of high quality, whether he worked as
+          developer, or managed the team."
         </p>
         <div class="testimonial-author">
-          <div class="author-avatar">MK</div>
+          <div class="author-avatar">ZM</div>
           <div class="author-info">
-            <h4>Mike Johnson</h4>
-            <p>CTO</p>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-text">
-          "Pavle is a great professional, always dedicated to what he's doing with a desire to improve. 
-          His mentoring skills helped our junior developers grow significantly. We had a lot of fun working 
-          together and I learned a lot from him."
-        </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">AK</div>
-          <div class="author-info">
-            <h4>Alex Kim</h4>
-            <p>Senior iOS Developer</p>
+            <h4>Zoran Matic</h4>
+            <p>COO at Carnegie Technologies 2015-2020</p>
           </div>
         </div>
       </div>
@@ -1406,7 +1415,7 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.skill-card, .app-card, .testimonial-card, .stat-item, .contracting-card').forEach(el => {
+    document.querySelectorAll('.skill-card, .app-card, .testimonial-card, .stat-item').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
